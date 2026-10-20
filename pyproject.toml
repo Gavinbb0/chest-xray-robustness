@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chest-xray-robustness"
+version = "0.1.0"
+description = "ResNet18 chest X-ray classification and image degradation robustness evaluation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.0",
+  "torchvision>=0.15",
+  "numpy>=1.24",
+  "Pillow>=9.0",
+  "scikit-learn>=1.2",
+  "matplotlib>=3.7",
+]
+
+[project.scripts]
+cxr-robust = "cxr_robust.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
