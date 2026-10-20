@@ -24,7 +24,7 @@ Here is the selected case, IM-0001-0001. Its ground-truth label is **Normal**. T
 
 [Pause where `severity` changes from 0 to 4 and `noise_std` becomes 0.15. Show the optional noise preview if present.]
 
-Now the evaluation moves from the clean condition, Level 0, to Gaussian-noise Level 4. On the image scale from zero to one, the noise standard deviation is 0.15. You can see the visual effect in this preview: fine random variation makes the image harder to read. The ground truth is still Normal. In the actual evaluation, noise was applied before ImageNet normalization, and the same degradation setting was used for both models. Holding the test condition constant makes the comparison more meaningful. The question is whether the model can preserve its distinction between normal and pneumonia despite the added noise.
+Now the evaluation moves from the clean condition, Level 0, to Gaussian-noise Level 4. On the image scale from zero to one, the noise standard deviation is 0.15. This adds fine random variation that makes the image harder to read. If the optional preview is available, you can see that effect here. The ground truth is still Normal. In the actual evaluation, noise was applied before ImageNet normalization, and the same degradation setting was used for both models. Holding the test condition constant makes the comparison more meaningful. The question is whether the model can preserve its distinction between normal and pneumonia despite the added noise.
 
 ## 4:15-5:30 — State 3: standard model decision (steps 27-30)
 
