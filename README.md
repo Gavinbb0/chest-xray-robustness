@@ -117,6 +117,19 @@ cxr-robust gradcam --image path/to/example.jpeg --baseline outputs/baseline.pth 
 
 Grad-CAM targets the pneumonia logit in the last ResNet18 convolution block. The figure overlays heat maps on the same resized source image; it is a qualitative diagnostic, not an anatomical validation.
 
+## LecTrace presentation
+
+The [LecTrace script](presentation/lectrace_presentation.py) and [10-minute speaking script](presentation/lectrace_speaking_script.md) walk through five selected evaluation states: the image and label, severe noise, the standard model's decision, the degradation-aware model's decision, and full-test AUROC. This is an explanation of saved results, **not** a live ResNet18 inference or a training run.
+
+LecTrace requires Python 3.11 or newer. In a compatible environment, run:
+
+```bash
+pip install lectrace
+lectrace serve presentation/lectrace_presentation.py --port 7001
+```
+
+Open the local URL printed by LecTrace. The script uses the checked-in aggregate [summary CSV](presentation/results/metrics/final_summary.csv). It also accepts three optional figures at `presentation/results/figures/error_cases.png`, `noise_preview_v2.png`, and `severe_standard_vs_robust.png`. The presentation remains runnable without them and shows explanatory text in their place. Figure files are excluded from this repository because the code presentation does not require uploading source X-ray imagery.
+
 ## Repository scope and reproducibility
 
 This is a cleaned implementation of the supplied `stage_1` and `stage_2` scripts. One-off GPU/image checks, manual case selections, pasted result tables, and duplicated per-degradation evaluation files are intentionally consolidated into the commands above. Generated images, checkpoints, and the dataset are excluded by `.gitignore`. Re-running training may yield different numbers from the report due to split membership, package/hardware versions, and training randomness; evaluating the original checkpoints with the original split is the closest comparison.

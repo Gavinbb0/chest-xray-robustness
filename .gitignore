@@ -7,4 +7,6 @@ outputs/
 *.pth
 *.pt
 .DS_Store
+_site/
+presentation/results/figures/
 
