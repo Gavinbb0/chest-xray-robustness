@@ -35,19 +35,19 @@ def load_auroc(condition: str) -> tuple[float, float]:
 def main() -> None:
     text("# When a chest X-ray gets noisy, does the model still work?")
     text(
-        "**Healthcare problem (0:00–1:15).** A pneumonia classifier may see "
+        "**Healthcare problem.** A pneumonia classifier may see "
         "blurred, noisy, dark, low-contrast, or compressed images. A wrong alarm "
         "can send a normal case for unnecessary follow-up."
     )
     text(
-        "**Motivation and approach (1:15–2:30).** Compare a standard ResNet18 "
+        "**Motivation and approach.** Compare a standard ResNet18 "
         "with the same model trained on clean and synthetically degraded images. "
         "Keep the official test set untouched and compare both models on the "
         "same degraded test images."
     )
     note("Say that this is a research robustness study, not a clinical device.")
 
-    text("## State 1 — The input and its label (2:30–3:15)")
+    text("## State 1 — The input and its label")
     case_id = "IM-0001-0001"  # @inspect case_id
     true_label = "Normal"  # @inspect true_label
     text(f"Selected test case: `{case_id}`. Ground truth: **{true_label}**.")
@@ -62,7 +62,7 @@ def main() -> None:
         "speaking. The label remains Normal in every later state."
     )
 
-    text("## State 2 — Apply the test degradation (3:15–4:15)")
+    text("## State 2 — Apply the test degradation")
     severity = 0  # @inspect severity
     severity = 4  # @inspect severity
     noise_std = 0.15  # @inspect noise_std
@@ -81,7 +81,7 @@ def main() -> None:
         "normalization. The optional preview shows severity, not a new disease label."
     )
 
-    text("## State 3 — Standard model decision (4:15–5:30)")
+    text("## State 3 — Standard model decision")
     text(
         "In the real evaluation code: resize → tensor → add noise → "
         "ImageNet normalization → ResNet18 logits → softmax pneumonia "
@@ -103,7 +103,7 @@ def main() -> None:
         "is executed here."
     )
 
-    text("## State 4 — Degradation-aware decision (5:30–6:45)")
+    text("## State 4 — Degradation-aware decision")
     robust_probability = 0.194  # @inspect robust_probability
     robust_threshold = 0.5728  # @inspect robust_threshold
     robust_prediction = (
@@ -119,7 +119,7 @@ def main() -> None:
         "image; each uses its own validation-derived threshold."
     )
 
-    text("## State 5 — One case versus the whole test set (6:45–8:15)")
+    text("## State 5 — One case versus the whole test set")
     standard_clean, robust_clean = load_auroc("Clean")  # @stepover
     standard_noisy, robust_noisy = load_auroc("Noise L4")  # @stepover
     standard_drop = standard_clean - standard_noisy  # @inspect standard_drop
@@ -143,7 +143,7 @@ def main() -> None:
         "so its robust value differs slightly."
     )
 
-    text("## Healthcare interpretation (8:15–10:00)")
+    text("## Healthcare interpretation")
     text(
         "Degradation-aware training substantially reduced the loss of "
         "discrimination under the tested synthetic noise. In the selected "
